@@ -66,15 +66,17 @@ public class ParkingLotTest {
     void should_return_null_when_Wrong_ticket_given_parkingLot() {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
+        Ticket ticket1 = parkingLot.park(new Car());
 
         //when
-        Ticket ticket = new Ticket(999);
-        Car pickCar= parkingLot.pick(ticket);
+        Ticket ticket2 = new Ticket(999);
+        Car pickCar= parkingLot.pick(ticket2);
 
         //then
         assertNull(pickCar);
     }
 
-    //6. given a parking lot, and a sed parking ticket, when fetch the car, then return nothing.
+    //6. given a parking lot, and a used parking ticket, when fetch the car, then return nothing.
+
 
 }
