@@ -1,2 +1,4 @@
-package com.parkinglot;public class Ticket {
+package com.parkinglot;
+
+public class Ticket {
 }

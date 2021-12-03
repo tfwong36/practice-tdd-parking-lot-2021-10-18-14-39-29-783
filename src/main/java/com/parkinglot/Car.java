@@ -1,2 +1,4 @@
-package com.parkinglot;public class Car {
+package com.parkinglot;
+
+public class Car {
 }
