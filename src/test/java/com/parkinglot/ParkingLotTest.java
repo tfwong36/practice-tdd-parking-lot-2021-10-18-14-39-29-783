@@ -27,4 +27,23 @@ public class ParkingLotTest {
         assertNull(ticket);
     }
 
+    //3. given a parking lot with a parked car, and a parking ticket, When fetch the car, then return the parked car
+    @Test
+    void should_return_parked_car_when_fetch_car_given_parkinglot_with_parked_car() {
+        //given
+        ParkingLot parkingLot = new ParkingLot(1);
+        Car car = new Car();
+
+        //when
+        Ticket ticket = parkingLot.park(car);
+        Car pickCar= parkingLot.pick(ticket);
+
+        //then
+        assertEquals(pickCar, car);
+    }
+
+    //4. given a parking lot with two parked cars, and two parking tickets, when fetch the car twice, Then return the right car with each ticket
+    //5. given a parking lot, and a wrong parking ticket, When fetch the car, Then return nothing.
+    //6. given a parking lot, and a sed parking ticket, whren fetch the car, then return nothing.
+
 }

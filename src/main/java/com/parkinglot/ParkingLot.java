@@ -24,6 +24,10 @@ public class ParkingLot {
 
     }
 
+    public Car pick(Ticket ticket) {
+        return new Car();
+    }
+
     private boolean hasSpareLot(){
         return ticketCarHashMap.size() < capacity;
     }
