@@ -96,6 +96,20 @@ public class ParkingLotTest {
 
     //storyline 2
     //Case 1 - Given a parking lot, and an unrecognized ticket, When fetch the car, Then return nothing with error message "Unrecognized parking ticket.
+    @Test
+    void should_return_UnrecognizedParkingTicket_exception_when_pick_car_given_unrecognized_ticket() {
+        //given
+        ParkingLot parkingLot = new ParkingLot(1);
+        parkingLot.park(new Car());
+
+        //when
+        //then
+        Ticket ticket = new Ticket();
+        UnrecognizedPackingTicket unrecognizedPackingTicket = assertThrows(UnrecognizedPackingTicket.class, ()->{
+            parkingLot.pick(ticket);
+        });
+        assertEquals("Unrecognized packing ticket", unrecognizedPackingTicket.getMessage());
+    }
 
     //Case 2 - Given a parking lot, and a used ticket, When fetch the car, Then return nothing with error message "Unrecognized parking ticket.
     //Case 3 - Given a parking lot without any position, and a car, When park the car, Then return nothing with error message "No available position.
