@@ -69,7 +69,7 @@ public class ParkingLotTest {
         Ticket ticket1 = parkingLot.park(new Car());
 
         //when
-        Ticket ticket2 = new Ticket(999);
+        Ticket ticket2 = new Ticket();
         Car pickCar= parkingLot.pick(ticket2);
 
         //then
