@@ -3,8 +3,8 @@ package com.parkinglot;
 import java.util.HashMap;
 
 public class ParkingLot {
-    HashMap<Ticket, Car> ticketCarHashMap = new HashMap<>();
-    int capacity = 10;
+    private final HashMap<Ticket, Car> ticketCarHashMap = new HashMap<>();
+    private int capacity = 10;
 
     public ParkingLot(int capacity) {
         this.capacity = capacity;
@@ -21,7 +21,6 @@ public class ParkingLot {
             return ticket;
         }
         return null;
-
     }
 
     public Car pick(Ticket ticket) {
