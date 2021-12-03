@@ -26,7 +26,7 @@ public class ParkingLot {
     public Car pick(Ticket ticket) {
         if (ticketCarHashMap.containsKey(ticket))
             return ticketCarHashMap.remove(ticket);
-        throw new UnrecognizedParkingTicket("Unrecognized packing ticket");
+        throw new UnrecognizedParkingTicket("Unrecognized packing ticket.");
     }
 
     private boolean hasSpareLot(){
