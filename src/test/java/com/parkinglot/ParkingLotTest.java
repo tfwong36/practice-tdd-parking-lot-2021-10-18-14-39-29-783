@@ -15,5 +15,16 @@ public class ParkingLotTest {
         //then
         assertNotNull(ticket);
     }
+    @Test
+    void should_return_null_when_park_car_given_no_spare_slot_and_car() {
+        //given
+        ParkingLot parkingLot = new ParkingLot(1);
+        parkingLot.park(new Car());
+        //when
+        Ticket ticket = parkingLot.park(new Car());
+
+        //then
+        assertNull(ticket);
+    }
 
 }
