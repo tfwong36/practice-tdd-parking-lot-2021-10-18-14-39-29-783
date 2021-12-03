@@ -77,6 +77,19 @@ public class ParkingLotTest {
     }
 
     //6. given a parking lot, and a used parking ticket, when fetch the car, then return nothing.
+    @Test
+    void should_return_null_when_pick_car_given_one_parking_lot() {
+        //given
+        ParkingLot parkingLot = new ParkingLot(1);
+        Ticket ticket1 = parkingLot.park(new Car());
+        Car pickCar1= parkingLot.pick(ticket1);
+
+        //when
+        Car pickCar2= parkingLot.pick(ticket1);
+
+        //then
+        assertNull(pickCar2);
+    }
 
 
 }
