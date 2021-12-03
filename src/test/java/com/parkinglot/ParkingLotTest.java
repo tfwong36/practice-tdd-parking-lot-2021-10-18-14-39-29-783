@@ -43,6 +43,24 @@ public class ParkingLotTest {
     }
 
     //4. given a parking lot with two parked cars, and two parking tickets, when fetch the car twice, Then return the right car with each ticket
+    @Test
+    void should_return_Corresponding_Car_when_pick_car_twice_given_two_parked_car() {
+        //given
+        ParkingLot parkingLot = new ParkingLot(2);
+        Car car1 = new Car();
+        Car car2 = new Car();
+        Ticket ticket1 = parkingLot.park(car1);
+        Ticket ticket2 = parkingLot.park(car2);
+
+        //when
+        Car pickCar1= parkingLot.pick(ticket1);
+        Car pickCar2= parkingLot.pick(ticket2);
+
+        //then
+        assertEquals(pickCar1, car1);
+        assertEquals(pickCar2, car2);
+    }
+
     //5. given a parking lot, and a wrong parking ticket, When fetch the car, Then return nothing.
     //6. given a parking lot, and a sed parking ticket, whren fetch the car, then return nothing.
 
