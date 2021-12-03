@@ -25,7 +25,7 @@ public class ParkingLot {
     }
 
     public Car pick(Ticket ticket) {
-        return ticketCarHashMap.get(ticket);
+        return ticketCarHashMap.remove(ticket);
     }
 
     private boolean hasSpareLot(){
