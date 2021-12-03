@@ -75,6 +75,6 @@ public class ParkingLotTest {
         assertNull(pickCar);
     }
 
-    //6. given a parking lot, and a sed parking ticket, whren fetch the car, then return nothing.
+    //6. given a parking lot, and a sed parking ticket, when fetch the car, then return nothing.
 
 }
