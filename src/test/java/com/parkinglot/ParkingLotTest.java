@@ -73,10 +73,12 @@ public class ParkingLotTest {
 
         //when
         Ticket ticket2 = new Ticket();
-        Car pickCar= parkingLot.pick(ticket2);
 
         //then
-        assertNull(pickCar);
+        UnrecognizedParkingTicket unrecognizedParkingTicket = assertThrows(UnrecognizedParkingTicket.class, ()->{
+            parkingLot.pick(ticket2);
+        });
+        assertEquals("Unrecognized packing ticket", unrecognizedParkingTicket.getMessage());
     }
 
     //6. given a parking lot, and a used parking ticket, when fetch the car, then return nothing.
@@ -88,10 +90,11 @@ public class ParkingLotTest {
         Car pickCar1= parkingLot.pick(ticket1);
 
         //when
-        Car pickCar2= parkingLot.pick(ticket1);
-
         //then
-        assertNull(pickCar2);
+        UnrecognizedParkingTicket unrecognizedParkingTicket = assertThrows(UnrecognizedParkingTicket.class, ()->{
+            parkingLot.pick(ticket1);
+        });
+        assertEquals("Unrecognized packing ticket", unrecognizedParkingTicket.getMessage());
     }
 
     //storyline 2
