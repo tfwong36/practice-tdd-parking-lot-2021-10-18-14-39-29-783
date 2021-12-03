@@ -21,10 +21,13 @@ public class ParkingLotTest {
         ParkingLot parkingLot = new ParkingLot(1);
         parkingLot.park(new Car());
         //when
-        Ticket ticket = parkingLot.park(new Car());
+
 
         //then
-        assertNull(ticket);
+        NoAvailablePositionException noAvailablePositionException = assertThrows(NoAvailablePositionException.class, ()->{
+            Ticket ticket = parkingLot.park(new Car());
+        });
+        assertEquals("No available position.", noAvailablePositionException.getMessage());
     }
 
     //3. given a parking lot with a parked car, and a parking ticket, When fetch the car, then return the parked car
@@ -93,6 +96,7 @@ public class ParkingLotTest {
 
     //storyline 2
     //Case 1 - Given a parking lot, and an unrecognized ticket, When fetch the car, Then return nothing with error message "Unrecognized parking ticket.
+
     //Case 2 - Given a parking lot, and a used ticket, When fetch the car, Then return nothing with error message "Unrecognized parking ticket.
     //Case 3 - Given a parking lot without any position, and a car, When park the car, Then return nothing with error message "No available position.
     @Test

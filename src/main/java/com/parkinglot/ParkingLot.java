@@ -20,7 +20,7 @@ public class ParkingLot {
             ticketCarHashMap.put(ticket, car);
             return ticket;
         }
-        return null;
+        throw new NoAvailablePositionException("No available position.");
     }
 
     public Car pick(Ticket ticket) {
