@@ -44,6 +44,22 @@ public class ParkingBoyTest {
 
 //    Case 3 - Given a standard parking boy, who manage two parking lots, first is full and second with available
 //    position, and a car, When park the car, Then the car will be parked to the second parking lot
+    @Test
+    void should_park_Second_ParkingLot_when_park_car_given_parkingBoy_manage_two_parkingLot_with_first_full_and_car() {
+        //given
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        ParkingLot parkingLot2 = new ParkingLot(1);
+        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+
+        //when
+        parkingBoy.park(new Car());
+        assertEquals(1, parkingLot2.getNumberOfSpareLot());
+
+        //then
+        Ticket ticket = parkingBoy.park(new Car());
+        assertEquals(0, parkingLot2.getNumberOfSpareLot());
+    }
+
 
 //    Case 4 - Given a standard parking boy, who manage two parking lots, both with parked car, and two parking ticket,
 //    when fetch the car twice, then return the right car with each ticket
