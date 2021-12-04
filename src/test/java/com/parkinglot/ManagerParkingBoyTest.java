@@ -114,7 +114,23 @@ public class ManagerParkingBoyTest {
 
         //then
         assertEquals(9, parkingLot1.getNumberOfSpareLot());
-
     }
+
+    //AC2
+    @Test
+    void should_return_right_car_from_parkinglot_when_manager_pick_car_given_manager_owned_a_parkinglot_and_a_parked_car_and_a_valid_ticket() {
+        //given
+        ParkingLot parkingLot1 = new ParkingLot(10);
+        ManagerParkingBoy manager = new ManagerParkingBoy(Arrays.asList(parkingLot1), Collections.emptyList());
+        Car car = new Car();
+        Ticket ticket = manager.park(car);
+
+        //when
+        Car pickCar = manager.pick(ticket);
+
+        //then
+        assertEquals(car, pickCar);
+    }
+
 
 }
