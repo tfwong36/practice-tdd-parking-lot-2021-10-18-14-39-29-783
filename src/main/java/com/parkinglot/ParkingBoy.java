@@ -15,4 +15,8 @@ public class ParkingBoy {
                 .findFirst()
                 .get().park(car);
     }
+
+    public Car pick(Car car2) {
+        return new Car();
+    }
 }

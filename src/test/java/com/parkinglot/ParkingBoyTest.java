@@ -52,7 +52,7 @@ public class ParkingBoyTest {
         ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
 
         //when
-        parkingBoy.park(new Car());
+        parkingLot1.park(new Car());
         assertEquals(1, parkingLot2.getNumberOfSpareLot());
 
         //then
@@ -63,6 +63,26 @@ public class ParkingBoyTest {
 
 //    Case 4 - Given a standard parking boy, who manage two parking lots, both with parked car, and two parking ticket,
 //    when fetch the car twice, then return the right car with each ticket
+    @Test
+    void should_return_right_car_withe_ticket_when_pick_car_given_parkingboy_manage_two_pakinglot_with_both_parked_car_and_ticket() {
+        //given
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        ParkingLot parkingLot2 = new ParkingLot(1);
+        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        Car car1 = new Car();
+        Car car2 = new Car();
+        Ticket ticket1 = parkingLot1.park(car1);
+        Ticket ticket2 = parkingLot2.park(car2);
+
+        //when
+        Car pickCar2 = parkingBoy.pick(car2);
+        Car pickCar1 = parkingBoy.pick(car1);
+
+        //then
+        assertEquals(car1, pickCar1);
+        assertEquals(car2, pickCar2);
+    }
+
 
 //    Case 5 - Given a standard parking boy, who manage two parking lots, and an unrecognized ticket, when fetch the
 //    car, then return nothing with error message "Unrecognized parking ticket."
