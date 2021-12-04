@@ -4,8 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SuperSmartBoyTest {
 //Case 1 - Given a Super Smart parking boy, who manage two parking lots, both with same available position, and a car,
@@ -64,6 +63,23 @@ public class SuperSmartBoyTest {
     }
 //Case 4 - Given a Super Smart parking boy, who manage two parking lots, and an unrecognized ticket, when fetch the
 // car, then return nothing with error message "Unrecognized parking ticket."
+    @Test
+    void should_return_UnrecognizedParkingTicketException_when_pick_car_given_SuperSmartParkingboy_manage_two_parkinglot_and_unrecognized_ticket() {
+        //given
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        ParkingLot parkingLot2 = new ParkingLot(1);
+        SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        parkingLot1.park(new Car());
+        parkingLot2.park(new Car());
+
+        //when
+
+        //then
+        UnrecognizedParkingTicketException unrecognizedParkingTicketException = assertThrows(UnrecognizedParkingTicketException.class, ()->{
+            superSmartParkingBoy.pick(new Ticket());
+        });
+        assertEquals("Unrecognized parking ticket.", unrecognizedParkingTicketException.getMessage());
+    }
 
 //Case 5 - Given a Super Smart parking boy, who manage two parking lots, and use a used ticket, when fetch the car,
 // ten return nothing with error message "Unrecognized parking ticket."
