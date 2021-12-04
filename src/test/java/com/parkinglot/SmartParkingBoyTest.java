@@ -10,7 +10,7 @@ public class SmartParkingBoyTest {
 //    Case 1 - Given a Smart parking boy, who manage two parking lot, with same number of empty space, and a car, When park the
 //    car, Then the car will be parked to the first parking lot.
     @Test
-    void should_return_ticket_when_park_car_given_SmartParkingboy_manage_one_parkinglot_with_available_position_and_car() {
+    void should_return_Ticket_and_park_in_first_parkinglot_when_park_car_given_SmartParkingboy_manage_two_parkinglot_with_same_number_of_spare_position_and_car() {
         //given
         ParkingLot parkingLot1 = new ParkingLot(1);
         ParkingLot parkingLot2 = new ParkingLot(1);
