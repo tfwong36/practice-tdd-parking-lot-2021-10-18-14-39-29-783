@@ -40,4 +40,8 @@ public class ParkingLot {
     public int getNumberOfSpareLot() {
         return capacity - ticketCarHashMap.size();
     }
+
+    public int getAvailableLotRate(){
+        return this.getNumberOfSpareLot()/this.capacity;
+    }
 }
