@@ -10,10 +10,13 @@ public class ParkingBoy {
     }
 
     public Ticket park(Car car) {
-        return parkingLots.stream()
+        ParkingLot parkingLot = parkingLots.stream()
                 .filter(ParkingLot::hasSpareLot)
                 .findFirst()
-                .get().park(car);
+                .orElse(null);
+        if (parkingLot != null)
+            return parkingLot.park(car);
+        throw new NoAvailablePositionException("No available position.");
     }
 
     public Car pick(Ticket ticket) {
