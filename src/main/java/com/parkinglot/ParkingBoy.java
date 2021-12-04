@@ -1,11 +1,12 @@
 package com.parkinglot;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
 public class ParkingBoy {
-    protected final List<ParkingLot> parkingLots;
+    protected List<ParkingLot> parkingLots;
 
     public ParkingBoy(List<ParkingLot> parkingLots) {
         this.parkingLots = parkingLots;
@@ -24,5 +25,10 @@ public class ParkingBoy {
         if (parkingLot != null)
             return parkingLot.pick(ticket);
         throw new UnrecognizedParkingTicketException("Unrecognized parking ticket.");
+    }
+
+    protected void addParkingLot(ParkingLot parkingLot) {
+        this.parkingLots = new ArrayList<>(parkingLots);
+        this.parkingLots.add(parkingLot);
     }
 }
