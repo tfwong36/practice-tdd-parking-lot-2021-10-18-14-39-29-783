@@ -102,7 +102,7 @@ public class SuperSmartParkingBoyTest {
 
     }
 
-//Case 6 - Govem a Super Smart parking boy, who manage two parking lots, both without any position, and a car, When
+//Case 6 - Given a Super Smart parking boy, who manage two parking lots, both without any position, and a car, When
 // park the car, then return nothing with error message "No available position.
     @Test
     void should_return_NoAvailablePositionException_when_park_car_given_SuperSmartParkingboy_manage_two_parkinglot_without_spare_lot() {
