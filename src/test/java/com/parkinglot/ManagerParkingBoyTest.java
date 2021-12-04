@@ -61,9 +61,11 @@ public class ManagerParkingBoyTest {
         });
         assertEquals("This Parking Boy Do Not Manage Any ParkingLot.", noPermissionToManageParkingLotException.getMessage());
     }
+
+    //AC1
     @Test
     void should_return_Ticket_from_parkinglot2_when_manager_specify_a_standard_parking_boy_to_park_a_car_given_two_parkinglot_and_parkinglot1_is_empty_and_a_car_and_parkingboy_responsible_for_parkinglot2() {
-        //standard parking boy will only park at parkinglot2, although parking lot1 is empty
+        //standard parking boy will only park at parkinglot2, although parkinglot1 is empty
         //given
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
@@ -79,13 +81,23 @@ public class ManagerParkingBoyTest {
     }
 
     //AC1
-//    @Test
-//    void should_return_NoPermissionToMangeException_when_manager_specify_a_parking_boy_to_fetch_a_car_given_two_parkinglot__a_parked_car_and_a_Ticket() {
-//        //given
-//
-//        //when
-//
-//        //then
-//    }
+    @Test
+    void should_return_NoPermissionToMangeException_when_manager_specify_a_parking_boy_to_fetch_a_car_given_two_parkinglot_both_parked_car_and_a_valid_Parkinglo1_Ticket_and_parkingboy_responsible_for_parkinglot1() {
+        //parking boy will only fetch car from parkinglot they assigned with, will not take other parkinglot's car, even if the ticket is valid
+        //given
+        ParkingLot parkingLot1 = new ParkingLot(10);
+        ParkingLot parkingLot2 = new ParkingLot(10);
+        Ticket ticket1 = parkingLot1.park(new Car());
+        StandardParkingBoy boy1 = new StandardParkingBoy(Collections.emptyList());
+        ManagerParkingBoy manager = new ManagerParkingBoy(Arrays.asList(parkingLot1, parkingLot2), Arrays.asList(boy1));
+        manager.assignParkingLot2ParkingBoy(boy1, parkingLot2);
+
+        //when
+        //then
+        NoPermissionToManageParkingLotException noPermissionToManageParkingLotException = assertThrows(NoPermissionToManageParkingLotException.class, ()->{
+            manager.orderParkingBoy2Pick(boy1, ticket1);
+        });
+        assertEquals("This Parking Boy Do Not Manage That ParkingLot.", noPermissionToManageParkingLotException.getMessage());
+    }
 
 }
