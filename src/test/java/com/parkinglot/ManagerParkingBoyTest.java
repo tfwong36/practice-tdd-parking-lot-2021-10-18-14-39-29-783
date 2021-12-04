@@ -150,5 +150,23 @@ public class ManagerParkingBoyTest {
         assertEquals("Unrecognized parking ticket.", unrecognizedParkingTicketException.getMessage());
     }
 
+    //AC3
+    @Test
+    void should_return_error_when_parkingboy_failed_to_park_a_car_ordered_by_manager_given_a_full_parkinglot_and_a_car() {
+        //given
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        parkingLot1.park(new Car());
+        StandardParkingBoy boy1 = new StandardParkingBoy(Collections.emptyList());
+        ManagerParkingBoy manager = new ManagerParkingBoy(Arrays.asList(parkingLot1), Arrays.asList(boy1));
+        manager.assignParkingLot2ParkingBoy(boy1, parkingLot1);
+
+        //when
+        //then
+        NoAvailablePositionException noAvailablePositionException = assertThrows(NoAvailablePositionException.class, ()->{
+            manager.assignParkingBoy2Park(boy1, new Car());
+        });
+        assertEquals("No available position.", noAvailablePositionException.getMessage());
+    }
+
 
 }
