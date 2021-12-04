@@ -119,6 +119,7 @@ public class ManagerParkingBoyTest {
     //AC2
     @Test
     void should_return_right_car_from_parkinglot_when_manager_pick_car_given_manager_owned_a_parkinglot_and_a_parked_car_and_a_valid_ticket() {
+        //manager can pick car by himself
         //given
         ParkingLot parkingLot1 = new ParkingLot(10);
         ManagerParkingBoy manager = new ManagerParkingBoy(Arrays.asList(parkingLot1), Collections.emptyList());
@@ -130,6 +131,23 @@ public class ManagerParkingBoyTest {
 
         //then
         assertEquals(car, pickCar);
+    }
+
+    //AC2
+    @Test
+    void should_return_UnrecognizedParkingTicketException_when_manager_pick_car_from_parkingLot_not_owned_given_a_parked_car_and_valid_ticket_from_parkingLot_not_owned() {
+        //manager cannot take the car from parkinglot not owned by him, even if the ticket is valid
+        //given
+        ParkingLot notOwnedParkingLot = new ParkingLot(1);
+        Ticket ticket = notOwnedParkingLot.park(new Car());
+        ManagerParkingBoy manager = new ManagerParkingBoy(Collections.emptyList(), Collections.emptyList());
+
+        //when
+        //then
+        UnrecognizedParkingTicketException unrecognizedParkingTicketException = assertThrows(UnrecognizedParkingTicketException.class, ()->{
+            manager.pick(ticket);
+        });
+        assertEquals("Unrecognized parking ticket.", unrecognizedParkingTicketException.getMessage());
     }
 
 
