@@ -75,10 +75,10 @@ public class ParkingLotTest {
         Ticket ticket2 = new Ticket();
 
         //then
-        UnrecognizedParkingTicket unrecognizedParkingTicket = assertThrows(UnrecognizedParkingTicket.class, ()->{
+        UnrecognizedParkingTicketException unrecognizedParkingTicketException = assertThrows(UnrecognizedParkingTicketException.class, ()->{
             parkingLot.pick(ticket2);
         });
-        assertEquals("Unrecognized packing ticket.", unrecognizedParkingTicket.getMessage());
+        assertEquals("Unrecognized parking ticket.", unrecognizedParkingTicketException.getMessage());
     }
 
     //6. given a parking lot, and a used parking ticket, when fetch the car, then return nothing.
@@ -91,10 +91,10 @@ public class ParkingLotTest {
 
         //when
         //then
-        UnrecognizedParkingTicket unrecognizedParkingTicket = assertThrows(UnrecognizedParkingTicket.class, ()->{
+        UnrecognizedParkingTicketException unrecognizedParkingTicketException = assertThrows(UnrecognizedParkingTicketException.class, ()->{
             parkingLot.pick(ticket1);
         });
-        assertEquals("Unrecognized packing ticket.", unrecognizedParkingTicket.getMessage());
+        assertEquals("Unrecognized parking ticket.", unrecognizedParkingTicketException.getMessage());
     }
 
     //storyline 2
@@ -108,10 +108,10 @@ public class ParkingLotTest {
         //when
         //then
         Ticket ticket = new Ticket();
-        UnrecognizedParkingTicket unrecognizedParkingTicket = assertThrows(UnrecognizedParkingTicket.class, ()->{
+        UnrecognizedParkingTicketException unrecognizedParkingTicketException = assertThrows(UnrecognizedParkingTicketException.class, ()->{
             parkingLot.pick(ticket);
         });
-        assertEquals("Unrecognized packing ticket.", unrecognizedParkingTicket.getMessage());
+        assertEquals("Unrecognized parking ticket.", unrecognizedParkingTicketException.getMessage());
     }
 
     //Case 2 - Given a parking lot, and a used ticket, When fetch the car, Then return nothing with error message "Unrecognized parking ticket.
@@ -124,10 +124,10 @@ public class ParkingLotTest {
         //when
         //then
         parkingLot.pick(ticket);
-        UnrecognizedParkingTicket unrecognizedParkingTicket = assertThrows(UnrecognizedParkingTicket.class, ()->{
+        UnrecognizedParkingTicketException unrecognizedParkingTicketException = assertThrows(UnrecognizedParkingTicketException.class, ()->{
             parkingLot.pick(ticket);
         });
-        assertEquals("Unrecognized packing ticket.", unrecognizedParkingTicket.getMessage());
+        assertEquals("Unrecognized parking ticket.", unrecognizedParkingTicketException.getMessage());
     }
 
     //Case 3 - Given a parking lot without any position, and a car, When park the car, Then return nothing with error message "No available position.

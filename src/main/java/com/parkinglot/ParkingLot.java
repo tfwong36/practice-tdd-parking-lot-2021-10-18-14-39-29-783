@@ -23,10 +23,14 @@ public class ParkingLot {
         throw new NoAvailablePositionException("No available position.");
     }
 
+    public Boolean isValidTicket(Ticket ticket){
+        return ticketCarHashMap.containsKey(ticket);
+    }
+
     public Car pick(Ticket ticket) {
         if (ticketCarHashMap.containsKey(ticket))
             return ticketCarHashMap.remove(ticket);
-        throw new UnrecognizedParkingTicket("Unrecognized packing ticket.");
+        throw new UnrecognizedParkingTicketException("Unrecognized parking ticket.");
     }
 
     public boolean hasSpareLot(){

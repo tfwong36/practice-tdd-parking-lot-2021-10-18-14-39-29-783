@@ -17,6 +17,12 @@ public class ParkingBoy {
     }
 
     public Car pick(Ticket ticket) {
-        return new Car();
+        ParkingLot parkingLot = parkingLots.stream()
+                .filter(e -> e.isValidTicket(ticket))
+                .findFirst()
+                .orElse(null);
+        if (parkingLot != null)
+            return parkingLot.pick(ticket);
+        throw new UnrecognizedParkingTicketException("Unrecognized parking ticket.");
     }
 }
