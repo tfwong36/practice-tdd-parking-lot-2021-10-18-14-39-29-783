@@ -10,6 +10,8 @@ public class ManagerParkingBoy extends StandardParkingBoy{
     }
 
     public Ticket assignParkingBoy2Park(StandardParkingBoy boy1, Car car) {
+        if (boy1.parkingLots.size() == 0)
+            throw new NoPermissionToManageParkingLotException("This Parking Boy Do Not Manage Any ParkingLot.");
         return boy1.park(car);
     }
 
