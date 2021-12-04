@@ -12,7 +12,7 @@ public class SuperSmartParkingBoy {
 
     public Ticket park(Car car) {
         ParkingLot parkingLot =  parkingLots.stream()
-            .min(Comparator.comparing(ParkingLot::getAvailableLotRate))
+            .max(Comparator.comparing(ParkingLot::getAvailableLotRate))
             .orElse(null);
         return parkingLot.park(car);
     }
