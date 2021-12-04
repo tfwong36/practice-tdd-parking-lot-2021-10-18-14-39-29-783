@@ -16,4 +16,8 @@ public class SmartParkingBoy {
                 .orElse(null);
         return parkingLot.park(car);
     }
+
+    public Car pick(Ticket ticket) {
+        return new Car();
+    }
 }

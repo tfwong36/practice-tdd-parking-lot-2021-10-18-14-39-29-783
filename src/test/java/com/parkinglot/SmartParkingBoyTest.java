@@ -39,8 +39,27 @@ public class SmartParkingBoyTest {
         assertEquals(9, parkingLot2.getNumberOfSpareLot());
     }
 
-//    Case 3 - Given a Smart parking boy, who manage two parking lots, first is full and second with available
-//    position, and a car, When park the car, Then the car will be parked to the second parking lot
+//    Case 3 - Given a Smart parking boy, who manage two parking lots, both with a parked car, and two parking ticket
+//    When fetch the car twice, Then return the right car with each ticket
+    @Test
+    void should_return_right_car_withe_ticket_when_pick_car_given_SmartParkingboy_manage_two_pakinglot_with_both_parked_car_and_ticket() {
+        //given
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        ParkingLot parkingLot2 = new ParkingLot(1);
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        Car car1 = new Car();
+        Car car2 = new Car();
+        Ticket ticket1 = parkingLot1.park(car1);
+        Ticket ticket2 = parkingLot2.park(car2);
+
+        //when
+        Car pickCar2 = smartParkingBoy.pick(ticket2);
+        Car pickCar1 = smartParkingBoy.pick(ticket1);
+
+        //then
+        assertEquals(car1, pickCar1);
+        assertEquals(car2, pickCar2);
+    }
 
 //    Case 4 - Given a Smart parking boy, who manage two parking lots, both with parked car, and two parking ticket,
 //    when fetch the car twice, then return the right car with each ticket
