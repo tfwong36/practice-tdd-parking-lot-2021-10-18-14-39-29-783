@@ -106,6 +106,26 @@ public class ParkingBoyTest {
 
 //    Case 6 - Given a standard parking boy, who manage two parking lots, and use a used ticket, when fetch the car,
 //    ten return nothing with error message "Unrecognized parking ticket."
+    @Test
+    void should_return_UnrecognizedParkingTicketException_when_pick_car_given_parkingboy_manage_two_parkinglot_with_used_ticket_and_car() {
+        //given
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        ParkingLot parkingLot2 = new ParkingLot(1);
+        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        Ticket ticket1 = parkingLot1.park(new Car());
+        parkingLot2.park(new Car());
+
+        //when
+        //then
+        parkingBoy.pick(ticket1);
+        UnrecognizedParkingTicketException unrecognizedParkingTicketException = assertThrows(UnrecognizedParkingTicketException.class, ()->{
+            parkingBoy.pick(ticket1);
+        });
+        assertEquals("Unrecognized parking ticket.", unrecognizedParkingTicketException.getMessage());
+
+    }
+
+
 
 //    Case 7 - Given a standard parking boy, who manage two parking lots, both without any position, and a car, When
 //    park the car, then return nothing with error message "No available position.
