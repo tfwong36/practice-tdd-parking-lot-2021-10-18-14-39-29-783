@@ -18,6 +18,6 @@ public class ManagerParkingBoy extends StandardParkingBoy{
     }
 
     public Car orderParkingBoy2Pick(StandardParkingBoy boy1, Ticket ticket) {
-        return new Car();
+        return boy1.pick(ticket);
     }
 }
