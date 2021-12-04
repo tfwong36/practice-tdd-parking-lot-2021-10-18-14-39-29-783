@@ -75,8 +75,8 @@ public class ParkingBoyTest {
         Ticket ticket2 = parkingLot2.park(car2);
 
         //when
-        Car pickCar2 = parkingBoy.pick(car2);
-        Car pickCar1 = parkingBoy.pick(car1);
+        Car pickCar2 = parkingBoy.pick(ticket1);
+        Car pickCar1 = parkingBoy.pick(ticket2);
 
         //then
         assertEquals(car1, pickCar1);

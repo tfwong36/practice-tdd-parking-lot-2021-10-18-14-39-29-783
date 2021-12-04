@@ -16,7 +16,7 @@ public class ParkingBoy {
                 .get().park(car);
     }
 
-    public Car pick(Car car2) {
+    public Car pick(Ticket ticket) {
         return new Car();
     }
 }
