@@ -100,4 +100,21 @@ public class ManagerParkingBoyTest {
         assertEquals("This Parking Boy Do Not Manage That ParkingLot.", noPermissionToManageParkingLotException.getMessage());
     }
 
+    //AC2
+    @Test
+    void should_return_Ticket_from_Parkinglot1_when_manager_park_car_given_manager_own_parkinglot1_and_two_parkinglot_and_a_car(){
+        //Manager can park to parkinglot1 if have two owned parkinglot
+        //given
+        ParkingLot parkingLot1 = new ParkingLot(10);
+        ParkingLot parkingLot2 = new ParkingLot(10);
+        ManagerParkingBoy manager = new ManagerParkingBoy(Arrays.asList(parkingLot1, parkingLot2), Collections.emptyList());
+
+        //when
+        Ticket ticket = manager.park(new Car());
+
+        //then
+        assertEquals(9, parkingLot1.getNumberOfSpareLot());
+
+    }
+
 }

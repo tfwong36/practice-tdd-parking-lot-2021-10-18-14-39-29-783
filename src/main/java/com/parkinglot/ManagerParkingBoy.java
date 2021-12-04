@@ -20,6 +20,12 @@ public class ManagerParkingBoy extends StandardParkingBoy{
     }
 
     public Car orderParkingBoy2Pick(StandardParkingBoy boy1, Ticket ticket) {
-        return boy1.pick(ticket);
+        ParkingLot parkingLot = parkingLots.stream()
+                .filter(e -> e.isValidTicket(ticket))
+                .findFirst()
+                .orElse(null);
+        if (boy1.parkingLots.contains(parkingLot))
+            return boy1.pick(ticket);
+        throw new NoPermissionToManageParkingLotException("This Parking Boy Do Not Manage That ParkingLot.");
     }
 }
