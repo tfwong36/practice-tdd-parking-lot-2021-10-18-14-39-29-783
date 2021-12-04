@@ -29,7 +29,7 @@ public class SmartParkingBoyTest {
         //given
         ParkingLot parkingLot1 = new ParkingLot(1);
         ParkingLot parkingLot2 = new ParkingLot(10);
-        ParkingBoy smartParkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
 
         //when
         Ticket ticket = smartParkingBoy.park(new Car());

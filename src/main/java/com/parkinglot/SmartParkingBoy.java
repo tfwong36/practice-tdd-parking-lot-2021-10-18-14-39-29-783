@@ -11,6 +11,9 @@ public class SmartParkingBoy {
     }
 
     public Ticket park(Car car) {
-        return new Ticket();
+        ParkingLot parkingLot =  parkingLots.stream()
+                .max(Comparator.comparing(ParkingLot::getNumberOfSpareLot))
+                .orElse(null);
+        return parkingLot.park(car);
     }
 }
