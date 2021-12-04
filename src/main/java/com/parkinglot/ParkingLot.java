@@ -34,6 +34,6 @@ public class ParkingLot {
     }
 
     public int getNumberOfSpareLot() {
-        return 0;
+        return capacity - ticketCarHashMap.size();
     }
 }
