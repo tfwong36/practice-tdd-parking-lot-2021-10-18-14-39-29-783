@@ -1,5 +1,6 @@
 package com.parkinglot;
 
+import javafx.concurrent.Service;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -45,14 +46,20 @@ public class ManagerParkingBoyTest {
     }
 
     //AC1
-//    @Test
-//    void should_return_NoPermissionToMangeException_when_manager_specify_a_parking_boy_to_park_a_car_given_two_parkinglot_a_car() {
-//        //given
-//
-//        //when
-//
-//        //then
-//    }
+    @Test
+    void should_return_NoPermissionToMangeException_when_manager_specify_a_parking_boy_to_park_a_car_in_parkinglot_not_managed_by_him_given_one_parkinglot__and_a_car() {
+        //given
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        StandardParkingBoy boy1 = new StandardParkingBoy(Collections.emptyList());
+        ManagerParkingBoy manager = new ManagerParkingBoy(Arrays.asList(parkingLot1), Arrays.asList(boy1));
+
+        //when
+        //then
+        NoPermissionToManageException noPermissionToManageException = assertThrows(NoPermissionToManageException.class, ()->{
+            manager.assignParkingBoy2Park(boy1, new Car());
+        });
+        assertEquals("This Parking Boy Do Not Manage Any ParkingLot.", noPermissionToManageException.getMessage());
+    }
 
     //AC1
 //    @Test
