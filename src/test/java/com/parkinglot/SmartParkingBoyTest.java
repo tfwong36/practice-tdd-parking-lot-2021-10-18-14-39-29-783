@@ -4,8 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SmartParkingBoyTest {
 //    Case 1 - Given a Smart parking boy, who manage one parking lot, with available position, and a car, When park the
@@ -61,15 +60,28 @@ public class SmartParkingBoyTest {
         assertEquals(car2, pickCar2);
     }
 
-//    Case 4 - Given a Smart parking boy, who manage two parking lots, both with parked car, and two parking ticket,
-//    when fetch the car twice, then return the right car with each ticket
-
-//    Case 5 - Given a Smart parking boy, who manage two parking lots, and an unrecognized ticket, when fetch the car,
+//    Case 4 - Given a Smart parking boy, who manage two parking lots, and an unrecognized ticket, when fetch the car,
 //    then return nothing with error message "Unrecognized parking ticket."
+    @Test
+    void should_return_exception_when_pick_car_given_SmartParkingboy_manage_two_parkinglot_and_unrecognized_ticket() {
+        //given
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        ParkingLot parkingLot2 = new ParkingLot(1);
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        parkingLot1.park(new Car());
+        parkingLot2.park(new Car());
 
-//    Case 6 - Given a Smart parking boy, who manage two parking lots, and use a used ticket, when fetch the car, ten
+        //when
+
+        //then
+        UnrecognizedParkingTicketException unrecognizedParkingTicketException = assertThrows(UnrecognizedParkingTicketException.class, ()->{
+            smartParkingBoy.pick(new Ticket());
+        });
+        assertEquals("Unrecognized parking ticket.", unrecognizedParkingTicketException.getMessage());
+    }
+//    Case 5 - Given a Smart parking boy, who manage two parking lots, and use a used ticket, when fetch the car, ten
 //    return nothing with error message "Unrecognized parking ticket."
 
-//    Case 7 - Govem a Smart parking boy, who manage two parking lots, both without any position, and a car, When park
+//    Case 6 - Govem a Smart parking boy, who manage two parking lots, both without any position, and a car, When park
 //    the car, then return nothing with error message "No available position.
 }
