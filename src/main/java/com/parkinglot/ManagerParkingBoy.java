@@ -16,4 +16,8 @@ public class ManagerParkingBoy extends StandardParkingBoy{
     public void assignParkingLot2ParkingBoy(StandardParkingBoy boy1, ParkingLot parkingLot) {
         boy1.addParkingLot(parkingLot);
     }
+
+    public Car orderParkingBoy2Pick(StandardParkingBoy boy1, Ticket ticket) {
+        return new Car();
+    }
 }
