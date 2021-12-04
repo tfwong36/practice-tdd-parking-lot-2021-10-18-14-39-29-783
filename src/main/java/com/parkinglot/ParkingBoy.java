@@ -1,13 +1,18 @@
 package com.parkinglot;
 
-public class ParkingBoy {
-    private final ParkingLot parkingLot;
+import java.util.List;
 
-    public ParkingBoy(ParkingLot parkingLot) {
-        this.parkingLot = parkingLot;
+public class ParkingBoy {
+    private final List<ParkingLot> parkingLots;
+
+    public ParkingBoy(List<ParkingLot> parkingLots) {
+        this.parkingLots = parkingLots;
     }
 
     public Ticket park(Car car) {
-        return parkingLot.park(car);
+        return parkingLots.stream()
+                .filter(ParkingLot::hasSpareLot)
+                .findFirst()
+                .get().park(car);
     }
 }

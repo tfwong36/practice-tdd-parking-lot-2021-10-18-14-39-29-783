@@ -29,7 +29,11 @@ public class ParkingLot {
         throw new UnrecognizedParkingTicket("Unrecognized packing ticket.");
     }
 
-    private boolean hasSpareLot(){
+    public boolean hasSpareLot(){
         return ticketCarHashMap.size() < capacity;
+    }
+
+    public int getNumberOfSpareLot() {
+        return 0;
     }
 }

@@ -78,7 +78,7 @@ public class ParkingLotTest {
         UnrecognizedParkingTicket unrecognizedParkingTicket = assertThrows(UnrecognizedParkingTicket.class, ()->{
             parkingLot.pick(ticket2);
         });
-        assertEquals("Unrecognized packing ticket", unrecognizedParkingTicket.getMessage());
+        assertEquals("Unrecognized packing ticket.", unrecognizedParkingTicket.getMessage());
     }
 
     //6. given a parking lot, and a used parking ticket, when fetch the car, then return nothing.
@@ -94,7 +94,7 @@ public class ParkingLotTest {
         UnrecognizedParkingTicket unrecognizedParkingTicket = assertThrows(UnrecognizedParkingTicket.class, ()->{
             parkingLot.pick(ticket1);
         });
-        assertEquals("Unrecognized packing ticket", unrecognizedParkingTicket.getMessage());
+        assertEquals("Unrecognized packing ticket.", unrecognizedParkingTicket.getMessage());
     }
 
     //storyline 2
