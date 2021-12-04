@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class SuperSmartBoyTest {
+public class SuperSmartParkingBoyTest {
 //Case 1 - Given a Super Smart parking boy, who manage two parking lots, both with same available position, and a car,
 // when park the car, then the car will be parked to the first parking lot.
     @Test

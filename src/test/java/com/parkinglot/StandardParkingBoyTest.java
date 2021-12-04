@@ -6,17 +6,17 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ParkingBoyTest {
+public class StandardParkingBoyTest {
     //    Case 1 - Given a standard parking boy, who manage one parking lot, with available position, and a car, When park
 //    the car, Then the car will be parked to the parking lot.
     @Test
     void should_return_ticket_when_park_car_given_parkingboy_manage_one_parkinglot_with_available_position_and_car() {
         //given
         ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot));
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(Arrays.asList(parkingLot));
 
         //when
-        Ticket ticket = parkingBoy.park(new Car());
+        Ticket ticket = standardParkingBoy.park(new Car());
 
         //then
         assertNotNull(ticket);
@@ -30,10 +30,10 @@ public class ParkingBoyTest {
         //given
         ParkingLot parkingLot1 = new ParkingLot();
         ParkingLot parkingLot2 = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
 
         //when
-        Ticket ticket = parkingBoy.park(new Car());
+        Ticket ticket = standardParkingBoy.park(new Car());
 
         //then
         assertNotNull(ticket);
@@ -48,14 +48,14 @@ public class ParkingBoyTest {
         //given
         ParkingLot parkingLot1 = new ParkingLot(1);
         ParkingLot parkingLot2 = new ParkingLot(1);
-        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
 
         //when
         parkingLot1.park(new Car());
         assertEquals(1, parkingLot2.getNumberOfSpareLot());
 
         //then
-        Ticket ticket = parkingBoy.park(new Car());
+        Ticket ticket = standardParkingBoy.park(new Car());
         assertEquals(0, parkingLot2.getNumberOfSpareLot());
     }
 
@@ -67,15 +67,15 @@ public class ParkingBoyTest {
         //given
         ParkingLot parkingLot1 = new ParkingLot(1);
         ParkingLot parkingLot2 = new ParkingLot(1);
-        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
         Car car1 = new Car();
         Car car2 = new Car();
         Ticket ticket1 = parkingLot1.park(car1);
         Ticket ticket2 = parkingLot2.park(car2);
 
         //when
-        Car pickCar2 = parkingBoy.pick(ticket2);
-        Car pickCar1 = parkingBoy.pick(ticket1);
+        Car pickCar2 = standardParkingBoy.pick(ticket2);
+        Car pickCar1 = standardParkingBoy.pick(ticket1);
 
         //then
         assertEquals(car1, pickCar1);
@@ -90,7 +90,7 @@ public class ParkingBoyTest {
         //given
         ParkingLot parkingLot1 = new ParkingLot(1);
         ParkingLot parkingLot2 = new ParkingLot(1);
-        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
         parkingLot1.park(new Car());
         parkingLot2.park(new Car());
 
@@ -98,7 +98,7 @@ public class ParkingBoyTest {
 
         //then
         UnrecognizedParkingTicketException unrecognizedParkingTicketException = assertThrows(UnrecognizedParkingTicketException.class, ()->{
-            parkingBoy.pick(new Ticket());
+            standardParkingBoy.pick(new Ticket());
         });
         assertEquals("Unrecognized parking ticket.", unrecognizedParkingTicketException.getMessage());
     }
@@ -111,15 +111,15 @@ public class ParkingBoyTest {
         //given
         ParkingLot parkingLot1 = new ParkingLot(1);
         ParkingLot parkingLot2 = new ParkingLot(1);
-        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
         Ticket ticket1 = parkingLot1.park(new Car());
         parkingLot2.park(new Car());
 
         //when
         //then
-        parkingBoy.pick(ticket1);
+        standardParkingBoy.pick(ticket1);
         UnrecognizedParkingTicketException unrecognizedParkingTicketException = assertThrows(UnrecognizedParkingTicketException.class, ()->{
-            parkingBoy.pick(ticket1);
+            standardParkingBoy.pick(ticket1);
         });
         assertEquals("Unrecognized parking ticket.", unrecognizedParkingTicketException.getMessage());
 
@@ -130,12 +130,12 @@ public class ParkingBoyTest {
     @Test
     void should_return_NoAvailablePositionException_when_park_car_given_parkingboy_manage_two_parkinglot_without_spare_lot() {
         //given
-        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(new ParkingLot(0), new ParkingLot(0)));
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(Arrays.asList(new ParkingLot(0), new ParkingLot(0)));
 
         //when
         //then
         NoAvailablePositionException noAvailablePositionException = assertThrows(NoAvailablePositionException.class, ()->{
-            parkingBoy.park(new Car());
+            standardParkingBoy.park(new Car());
         });
         assertEquals("No available position.", noAvailablePositionException.getMessage());
     }
