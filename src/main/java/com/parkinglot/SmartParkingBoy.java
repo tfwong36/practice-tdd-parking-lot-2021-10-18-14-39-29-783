@@ -12,8 +12,8 @@ public class SmartParkingBoy {
 
     public Ticket park(Car car) {
         ParkingLot parkingLot =  parkingLots.stream()
-                .max(Comparator.comparing(ParkingLot::getNumberOfSpareLot))
-                .orElse(null);
+            .max(Comparator.comparing(ParkingLot::getNumberOfSpareLot))
+            .orElse(null);
         return parkingLot.park(car);
     }
 
