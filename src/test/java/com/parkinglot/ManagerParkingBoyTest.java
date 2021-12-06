@@ -1,6 +1,5 @@
 package com.parkinglot;
 
-import javafx.concurrent.Service;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -18,7 +17,7 @@ public class ManagerParkingBoyTest {
         ManagerParkingBoy manager = new ManagerParkingBoy(Arrays.asList(parkingLot1), Arrays.asList(boy1));
         //when
         manager.assignParkingLot2ParkingBoy(boy1, parkingLot1);
-        Ticket ticket = manager.assignParkingBoy2Park(boy1, new Car());
+        Ticket ticket = manager.orderParkingBoyToPark(boy1, new Car());
 
         //then
         assertNotNull(ticket);
@@ -39,7 +38,7 @@ public class ManagerParkingBoyTest {
         parkingLot1.park(car1);
         Ticket ticket = parkingLot1.park(car2);
         manager.assignParkingLot2ParkingBoy(boy1, parkingLot1);
-        Car pickCar = manager.orderParkingBoy2Pick(boy1, ticket);
+        Car pickCar = manager.orderParkingBoyToPick(boy1, ticket);
 
         //then
         assertEquals(pickCar,car2);
@@ -57,7 +56,7 @@ public class ManagerParkingBoyTest {
         //when
         //then
         NoPermissionToManageParkingLotException noPermissionToManageParkingLotException = assertThrows(NoPermissionToManageParkingLotException.class, ()->{
-            manager.assignParkingBoy2Park(boy1, new Car());
+            manager.orderParkingBoyToPark(boy1, new Car());
         });
         assertEquals("This Parking Boy Do Not Manage Any ParkingLot.", noPermissionToManageParkingLotException.getMessage());
     }
@@ -74,7 +73,7 @@ public class ManagerParkingBoyTest {
         manager.assignParkingLot2ParkingBoy(boy1, parkingLot2);
 
         //when
-        Ticket ticket = manager.assignParkingBoy2Park(boy1, new Car());
+        Ticket ticket = manager.orderParkingBoyToPark(boy1, new Car());
         //then
         assertNotNull(ticket);
         assertEquals(9, parkingLot2.getNumberOfSpareLot());
@@ -95,7 +94,7 @@ public class ManagerParkingBoyTest {
         //when
         //then
         NoPermissionToManageParkingLotException noPermissionToManageParkingLotException = assertThrows(NoPermissionToManageParkingLotException.class, ()->{
-            manager.orderParkingBoy2Pick(boy1, ticket1);
+            manager.orderParkingBoyToPick(boy1, ticket1);
         });
         assertEquals("This Parking Boy Do Not Manage That ParkingLot.", noPermissionToManageParkingLotException.getMessage());
     }
@@ -163,7 +162,7 @@ public class ManagerParkingBoyTest {
         //when
         //then
         NoAvailablePositionException noAvailablePositionException = assertThrows(NoAvailablePositionException.class, ()->{
-            manager.assignParkingBoy2Park(boy1, new Car());
+            manager.orderParkingBoyToPark(boy1, new Car());
         });
         assertEquals("No available position.", noAvailablePositionException.getMessage());
     }

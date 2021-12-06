@@ -13,7 +13,9 @@ public class SmartParkingBoy extends ParkingBoy {
         ParkingLot parkingLot =  parkingLots.stream()
                 .max(Comparator.comparing(ParkingLot::getNumberOfSpareLot))
                 .orElse(null);
-        return parkingLot.park(car);
+        if (parkingLot != null)
+            return parkingLot.park(car);
+        throw new NoAvailablePositionException("No available position.");
     }
 
 }

@@ -28,7 +28,7 @@ public class ParkingLot {
     }
 
     public Car pick(Ticket ticket) {
-        if (ticketCarHashMap.containsKey(ticket))
+        if (isValidTicket(ticket))
             return ticketCarHashMap.remove(ticket);
         throw new UnrecognizedParkingTicketException("Unrecognized parking ticket.");
     }
@@ -42,6 +42,6 @@ public class ParkingLot {
     }
 
     public float getAvailableLotRate(){
-        return (float)this.getNumberOfSpareLot()/this.capacity;
+        return capacity == 0? 0 : (float)this.getNumberOfSpareLot()/this.capacity;
     }
 }
